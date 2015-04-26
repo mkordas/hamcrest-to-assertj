@@ -57,6 +57,8 @@ import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 
 public class HamcrestAssertions {
+  private static final String NULL_STRING = null;
+
   @Test
   public void simple() {
     assertThat(1, equalTo(1));
@@ -130,14 +132,14 @@ public class HamcrestAssertions {
     assertThat("", isEmptyString());
     assertThat("a", not(isEmptyString()));
 
-    assertThat(null, isEmptyOrNullString());
+    assertThat(NULL_STRING, isEmptyOrNullString());
     assertThat("a", not(isEmptyOrNullString()));
   }
 
   @Test
   public void values() {
-    assertThat(null, nullValue());
-    assertThat(null, is(nullValue()));
+    assertThat(NULL_STRING, nullValue());
+    assertThat(NULL_STRING, is(nullValue()));
     assertThat("", not(nullValue()));
     assertThat("", is(not(nullValue())));
 
@@ -265,7 +267,7 @@ public class HamcrestAssertions {
     assertThat(true, is(true));
     assertThat(false, is(false));
 
-    assertThat(null, equalTo(null));
+    assertThat(NULL_STRING, equalTo(null));
     assertThat(emptyList(), not(equalTo(null)));
 
     assertThat(emptyList(), hasSize(0));

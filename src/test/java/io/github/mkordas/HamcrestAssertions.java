@@ -8,7 +8,6 @@ import static org.hamcrest.Matchers.arrayContaining;
 import static org.hamcrest.Matchers.arrayContainingInAnyOrder;
 import static org.hamcrest.Matchers.arrayWithSize;
 import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.Matchers.comparesEqualTo;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
@@ -19,7 +18,6 @@ import static org.hamcrest.Matchers.emptyIterable;
 import static org.hamcrest.Matchers.emptyIterableOf;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.hamcrest.Matchers.equalToIgnoringWhiteSpace;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasEntry;
@@ -42,7 +40,6 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.hamcrest.Matchers.theInstance;
 import static org.hamcrest.Matchers.typeCompatibleWith;
 import static org.hamcrest.core.Is.is;
@@ -260,6 +257,20 @@ public class HamcrestAssertions {
         1,
         is(equalTo(1))
     );
+
+    assertThat(1,
+        is(equalTo(1))
+    );
+
+    assertThat(1,
+        is(equalTo(1)));
+
+    assertThat(
+        1,
+        is(equalTo(1)));
+
+    assertThat(
+        1, is(equalTo(1)));
   }
 
   @Test

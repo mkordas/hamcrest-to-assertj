@@ -51,6 +51,7 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.Is;
 import org.hamcrest.core.IsEqual;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class HamcrestAssertions {
@@ -275,7 +276,7 @@ public class HamcrestAssertions {
 
   @Test
   public void noStaticImports() {
-    assertThat(1, Is.is(1));
+    Assert.assertThat(1, Is.is(1));
     assertThat(1, IsEqual.equalTo(1));
     assertThat(1, Matchers.is(1));
     assertThat(1, CoreMatchers.is(1));

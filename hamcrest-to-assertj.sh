@@ -2,7 +2,7 @@
 git checkout src
 files=$(grep -lR hamcrest src/test/java | grep java$)
 
-BEGIN='s/(?:Assert\.)?assertThat\(([^X]*?),\s+(?:(?:Is|Matchers)\.)?'
+BEGIN='s/(?:Assert\.)?assertThat\(([^X]*?),\s+(?:(?:Is|Matchers|CoreMatchers|IsEqual)\.)?'
 END=');/gs'
 IS='(is\()?'
 END_FIND='\)+;'
@@ -12,7 +12,8 @@ for file in $files
 do
   function replace() {
     grep -P "assertThat[^;X]+${1}" $file && perl -0777 -i -pe "${BEGIN}${IS}${1}${END_FIND}${REPLACE}${2}${END}" $file \
-      && grep -qv 'org.assertj.core.api.Assertions.assertThat' && perl -0777 -i -pe 's/(package .*?\n)/$1\nimport static org.assertj.core.api.Assertions.assertThat;\n/gs' $file
+      && ! grep -q 'org.assertj.core.api.Assertions.assertThat' $file \
+      && perl -0777 -i -pe 's/(package .*?\n)/$1\nimport static org.assertj.core.api.Assertions.assertThat;\n/gs' $file
   }
 
   function fix() {
@@ -35,6 +36,7 @@ do
   replace 'isEmptyString\(' 'isEmpty('
   replace 'not\(isEmptyString\(' 'isNotEmpty('
   replace 'isEmptyOrNullString\(' 'isNullOrEmpty('
+  replace 'not\(isEmptyOrNullString\(' 'isNotEmpty('
   replace 'not\(empty\(' 'isNotEmpty('
   replace 'notNullValue\(' 'isNotNull('
   replace 'not\(nullValue\(' 'isNotNull('
@@ -45,7 +47,9 @@ do
   replace 'startsWith\(([^;X]+)(?(2)\))\)' 'startsWith($3'
   replace 'endsWith\(([^;X]+)(?(2)\))\)' 'endsWith($3'
   replace 'containsInAnyOrder\(([^;X]+)(?(2)\))\)' 'containsOnly($3'
-  replace 'arrayContaining\(([^;X]+)(?(2)\))\)' 'containsOnly($3'
+  replace 'arrayContaining\(([^;X]+)(?(2)\))\)' 'containsExactly($3'
+  replace 'not\(arrayContaining\(([^;X]+)(?(2)\))\)\)' 'doesNotContain($3'
+  replace 'arrayContainingInAnyOrder\(([^;X]+)(?(2)\))\)' 'containsOnly($3'
   replace 'hasItems\(([^;X]+)(?(2)\))\)' 'contains($3'
   replace 'not\(hasItems\(([^;X]+)(?(2)\))\)\)' 'doesNotContain($3'
   replace 'contains\(([^;X]+)(?(2)\))\)' 'containsExactly($3'
@@ -56,7 +60,7 @@ do
   replace 'not\(isIn\(([^;X]+)(?(2)\))\)\)' 'isNotIn($3'
   replace 'hasItem\(([^;X]+)(?(2)\))\)' 'contains($3'
   replace 'hasItemInArray\(([^;X]+)(?(2)\))\)' 'contains($3'
-  replace 'not\(hasItemInArray\(([^;X]+)(?(2)\))\)\)' 'contains($3'
+  replace 'not\(hasItemInArray\(([^;X]+)(?(2)\))\)\)' 'doesNotContain($3'
   replace 'not\(hasItem\(([^;X]+)(?(2)\))\)\)' 'doesNotContain($3'
   replace 'hasKey\(([^;X]+)(?(2)\))\)' 'containsKey($3'
   replace 'not\(hasKey\(([^;X]+)(?(2)\))\)\)' 'doesNotContainKey($3'
@@ -65,12 +69,11 @@ do
   replace 'hasEntry\(([^;X]+)(?(2)\))\)' 'containsEntry($3'
   replace 'not\(hasEntry\(([^;X]+)(?(2)\))\)\)' 'doesNotContainEntry($3'
   replace 'equalToIgnoringCase\(([^;X]+)(?(2)\))\)' 'isEqualToIgnoringCase($3'
-  replace 'not\(equalToIgnoringCase\(([^;X]+)(?(2)\))\)\)' 'isEqualToIgnoringCase($3'
   replace 'sameInstance\(([^;X]+)(?(2)\))\)' 'isSameAs($3'
   replace 'not\(sameInstance\(([^;X]+)(?(2)\))\)\)' 'isNotSameAs($3'
   replace 'not\(is\(sameInstance\(([^;X]+)(?(2)\))\)\)\)' 'isNotSameAs($3'
-  replace 'typeCompatibleWith\(([^;X]+)(?(2)\))\)' 'isAssignableFrom($3'
-  replace 'not\(typeCompatibleWith\(([^;X]+)(?(2)\))\)\)' 'isNotAssignableFrom($3'
+  replace 'typeCompatibleWith\(([^;X]+)(?(2)\))\)' 'isInstanceOf($3'
+  replace 'not\(typeCompatibleWith\(([^;X]+)(?(2)\))\)\)' 'isAssignableFrom($3'
   replace 'instanceOf\(([^;X]+)(?(2)\))\)' 'isInstanceOf($3'
   replace 'not\(instanceOf\(([^;X]+)(?(2)\))\)\)' 'isNotInstanceOf($3'
   replace 'isA\(([^;X]+)(?(2)\))\)' 'isInstanceOf($3'
@@ -79,9 +82,13 @@ do
   replace 'not\(theInstance\(([^;X]+)(?(2)\))\)\)' 'isNotSameAs($3'
   replace 'closeTo\(([^,]+), ([^;X]+)(?(2)\))\)' 'isCloseTo($3, within($4)'
   replace 'lessThanOrEqualTo\(([^;X]+)(?(2)\))\)' 'isLessThanOrEqualTo($3'
+  replace 'not\(lessThanOrEqualTo\(([^;X]+)(?(2)\))\)\)' 'isGreaterThan($3'
   replace 'lessThan\(([^;X]+)(?(2)\))\)' 'isLessThan($3'
+  replace 'not\(lessThan\(([^;X]+)(?(2)\))\)\)' 'isGreaterThanOrEqualTo($3'
   replace 'greaterThanOrEqualTo\(([^;X]+)(?(2)\))\)' 'isGreaterThanOrEqualTo($3'
+  replace 'not\(greaterThanOrEqualTo\(([^;X]+)(?(2)\))\)\)' 'isLessThan($3'
   replace 'greaterThan\(([^;X]+)(?(2)\))\)' 'isGreaterThan($3'
+  replace 'not\(greaterThan\(([^;X]+)(?(2)\))\)\)' 'isLessThanOrEqualTo($3'
   replace 'equalTo\(true(?(2)\))\)' 'isTrue('
   replace 'equalTo\(false(?(2)\))\)' 'isFalse('
   replace 'not\(equalTo\(([^;X]+)(?(2)\))\)\)' 'isNotEqualTo($3'
@@ -103,7 +110,10 @@ do
   fix 'isEqualTo\(""\)' 'isEmpty()'
   fix '\.size\(\)\)\.isZero\(\)' ').isEmpty()'
   fix '\.length\)\.isZero\(\)' ').isEmpty()'
-  fix '\.size\(\)\)\.isEqualTo\(([^;X]+)\)' ').hasSize($2)'
+  fix '\.size\(\)\)\.isEqualTo\(([^;X]+)\)' ').hasSize($1)'
+
+  grep -q 'within(' $file && ! grep -q 'org.assertj.core.api.Assertions.within' $file \
+      && perl -0777 -i -pe 's/(package .*?\n)/$1\nimport static org.assertj.core.api.Assertions.within;/gs' $file
 done
 
 find . -name "*.bak*" -delete

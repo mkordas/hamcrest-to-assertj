@@ -1,4 +1,5 @@
-git reset --hard
+#!/usr/bin/env bash
+git checkout src
 files=$(grep -lR hamcrest src/test/java | grep java$)
 
 BEGIN='s/(?:Assert\.)?assertThat\(([^X]*?),\s+(?:(?:Is|Matchers)\.)?'
@@ -11,7 +12,7 @@ for file in $files
 do
   function replace() {
     grep -P "assertThat[^;X]+${1}" $file && perl -0777 -i -pe "${BEGIN}${IS}${1}${END_FIND}${REPLACE}${2}${END}" $file \
-      && perl -0777 -i -pe 's/(package .*?\n)/$1\nimport static org.assertj.core.api.Assertions.assertThat;\n/gs' $file
+      && grep -qv 'org.assertj.core.api.Assertions.assertThat' && perl -0777 -i -pe 's/(package .*?\n)/$1\nimport static org.assertj.core.api.Assertions.assertThat;\n/gs' $file
   }
 
   function fix() {

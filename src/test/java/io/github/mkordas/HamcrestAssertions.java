@@ -83,13 +83,8 @@ public class HamcrestAssertions {
     assertThat(3, not(greaterThan(4)));
     assertThat(3, is(not(greaterThan(4))));
 
-    assertThat(2, comparesEqualTo(2));
-    assertThat(2, not(comparesEqualTo(3)));
-
     assertThat(1.0, is(closeTo(2.0, 1.0)));
     assertThat(1.0, closeTo(2.0, 1.0));
-    assertThat(5.0, not(closeTo(2.0, 1.0)));
-    assertThat(5.0, is(not(closeTo(2.0, 1.0))));
 
     assertThat(2, lessThanOrEqualTo(2));
     assertThat(2, is(lessThanOrEqualTo(3)));
@@ -106,25 +101,13 @@ public class HamcrestAssertions {
   public void strings() {
     assertThat("string", equalToIgnoringCase("STRING"));
     assertThat("string", is(equalToIgnoringCase("STRING")));
-    assertThat("string", not(equalToIgnoringCase("STRIN")));
-    assertThat("string", is(not(equalToIgnoringCase("STRIN"))));
-
-    assertThat("string", equalToIgnoringWhiteSpace(" string"));
-    assertThat("string", is(equalToIgnoringWhiteSpace(" string")));
-    assertThat("string", not(equalToIgnoringWhiteSpace("tring")));
-    assertThat("string", is(not(equalToIgnoringWhiteSpace("tring"))));
 
     assertThat("string", startsWith("s"));
-    assertThat("string", not(startsWith("g")));
 
     assertThat("string", endsWith("g"));
-    assertThat("string", not(endsWith("s")));
 
     assertThat("string", containsString("i"));
     assertThat("string", not(containsString("q")));
-
-    assertThat("string", stringContainsInOrder(asList("s", "t")));
-    assertThat("string", not(stringContainsInOrder(asList("t", "s"))));
   }
 
   @Test
@@ -192,12 +175,9 @@ public class HamcrestAssertions {
     assertThat(asList(0, 1), not(contains(2)));
 
     assertThat(asList(0, 1), containsInAnyOrder(1, 0));
-    assertThat(asList(0, 1), not(containsInAnyOrder(2, 0)));
 
     assertThat(asList(0, 1), iterableWithSize(2));
     assertThat(asList(0, 1), is(iterableWithSize(2)));
-    assertThat(asList(0, 1, 3), not(iterableWithSize(2)));
-    assertThat(asList(0, 1, 3), is(not(iterableWithSize(2))));
   }
 
   @Test
@@ -213,7 +193,6 @@ public class HamcrestAssertions {
     assertThat(asList(0, 1), is(not(emptyCollectionOf(Integer.class))));
 
     assertThat(asList(0, 1), hasSize(2));
-    assertThat(asList(0, 1, 3), not(hasSize(2)));
   }
 
   @Test
@@ -245,21 +224,15 @@ public class HamcrestAssertions {
 
     assertThat(new Object[] { 1 }, arrayWithSize(1));
     assertThat(new Object[] { 1 }, is(arrayWithSize(1)));
-    assertThat(new Object[] {}, not(arrayWithSize(1)));
-    assertThat(new Object[] {}, is(not(arrayWithSize(1))));
 
     assertThat(new Object[] { 1, 2 }, hasItemInArray(1));
     assertThat(new Object[] { 1 }, not(hasItemInArray(2)));
 
     assertThat(new Object[] { 1, 2 }, arrayContaining(1, 2));
     assertThat(new Object[] { 1, 2 }, is(arrayContaining(1, 2)));
-    assertThat(new Object[] { 2, 1 }, not(arrayContaining(1, 2)));
-    assertThat(new Object[] { 2, 1 }, is(not(arrayContaining(1, 2))));
 
     assertThat(new Object[] { 1, 2 }, arrayContainingInAnyOrder(2, 1));
     assertThat(new Object[] { 1, 2 }, is(arrayContainingInAnyOrder(2, 1)));
-    assertThat(new Object[] { 2, 1 }, not(arrayContainingInAnyOrder(1)));
-    assertThat(new Object[] { 2, 1 }, is(not(arrayContainingInAnyOrder(2))));
   }
 
   @Test

@@ -238,6 +238,8 @@ public class HamcrestAssertions {
         assertThat(true, is(true));
         assertThat(false, is(false));
 
+        assertThat("", is(""));
+
         assertThat(NULL_STRING, equalTo(null));
         assertThat(emptyList(), not(equalTo(null)));
 

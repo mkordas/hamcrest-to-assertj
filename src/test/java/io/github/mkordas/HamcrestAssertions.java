@@ -275,8 +275,8 @@ public class HamcrestAssertions {
     @Test
     public void noStaticImports() {
         Assert.assertThat(1, Is.is(1));
-        assertThat(1, IsEqual.equalTo(1));
-        assertThat(1, Matchers.is(1));
-        assertThat(1, CoreMatchers.is(1));
+        Assert.assertThat(2, IsEqual.equalTo(2));
+        Assert.assertThat(3, Matchers.is(3));
+        Assert.assertThat(4, CoreMatchers.is(4));
     }
 }

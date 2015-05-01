@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 git checkout src
-files=$(grep -lR hamcrest src/test/java | grep java$)
+files=$(grep -lR hamcrest src/test/java | grep .java$)
 
 BEGIN='s/(?:Assert\.)?assertThat\(\s*([^X]*?),\s+(?:(?:Is|Matchers|CoreMatchers|IsEqual)\.)?'
 END=');/gs'

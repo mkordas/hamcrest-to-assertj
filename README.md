@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mkordas/hamcrest-to-assertj.svg?branch=master)](https://travis-ci.org/mkordas/hamcrest-to-assertj)
+[![Dependency Status](https://www.versioneye.com/user/projects/55438421d8fe1aea70000061/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55438421d8fe1aea70000061)
 # Hamcrest to AssertJ Converter
 
 ### Supported Hamcrest Matchers:

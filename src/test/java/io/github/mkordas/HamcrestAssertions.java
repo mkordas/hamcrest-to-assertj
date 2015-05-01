@@ -174,8 +174,8 @@ public class HamcrestAssertions {
 
         assertThat(asList(0, 1), containsInAnyOrder(1, 0));
 
-        assertThat(asList(0, 1), iterableWithSize(2));
-        assertThat(asList(0, 1), is(iterableWithSize(2)));
+        assertThat(asList(new Object(), new Object()), iterableWithSize(2));
+        assertThat(asList(new Object(), new Object()), is(iterableWithSize(2)));
     }
 
     @Test
@@ -223,14 +223,14 @@ public class HamcrestAssertions {
         assertThat(new Object[]{1}, arrayWithSize(1));
         assertThat(new Object[]{1}, is(arrayWithSize(1)));
 
-        assertThat(new Object[]{1, 2}, hasItemInArray(1));
-        assertThat(new Object[]{1}, not(hasItemInArray(2)));
+        assertThat(new Integer[]{1, 2}, hasItemInArray(1));
+        assertThat(new Integer[]{1}, not(hasItemInArray(2)));
 
-        assertThat(new Object[]{1, 2}, arrayContaining(1, 2));
-        assertThat(new Object[]{1, 2}, is(arrayContaining(1, 2)));
+        assertThat(new Integer[]{1, 2}, arrayContaining(1, 2));
+        assertThat(new Integer[]{1, 2}, is(arrayContaining(1, 2)));
 
-        assertThat(new Object[]{1, 2}, arrayContainingInAnyOrder(2, 1));
-        assertThat(new Object[]{1, 2}, is(arrayContainingInAnyOrder(2, 1)));
+        assertThat(new Integer[]{1, 2}, arrayContainingInAnyOrder(2, 1));
+        assertThat(new Integer[]{1, 2}, is(arrayContainingInAnyOrder(2, 1)));
     }
 
     @Test

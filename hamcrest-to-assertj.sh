@@ -20,7 +20,6 @@ do
     perl -0777 -i -pe "s/${1}/${2}/g" $file
   }
 
-  replace 'hasSize\(0' 'isEmpty('
   replace 'hasSize\(([^;]+)(?(2)\))\)' 'hasSize($3'
   replace 'iterableWithSize\(([^;]+)(?(2)\))\)' 'hasSize($3'
   replace 'arrayWithSize\(([^;]+)(?(2)\))\)' 'hasSize($3'
@@ -89,17 +88,11 @@ do
   replace 'not\(greaterThanOrEqualTo\(([^;]+)(?(2)\))\)\)' 'isLessThan($3'
   replace 'greaterThan\(([^;]+)(?(2)\))\)' 'isGreaterThan($3'
   replace 'not\(greaterThan\(([^;]+)(?(2)\))\)\)' 'isLessThanOrEqualTo($3'
-  replace 'equalTo\(true(?(2)\))\)' 'isTrue('
-  replace 'equalTo\(false(?(2)\))\)' 'isFalse('
   replace 'not\(equalTo\(([^;]+)(?(2)\))\)\)' 'isNotEqualTo($3'
   replace 'not\(([^;]+)(?(2)\))\)' 'isNotEqualTo($3'
   replace 'equalTo\(([^;]+)(?(2)\))\)' 'isEqualTo($3'
   replace 'is\(not\(([^;]+)(?(2)\))\)\)' 'isNotEqualTo($3'
   replace 'not\(is\(([^;]+)(?(2)\))\)\)' 'isNotEqualTo($3'
-  replace 'is\(true' 'isTrue('
-  replace 'is\(false' 'isFalse('
-  replace 'is\(null' 'isNull('
-  replace 'is\(0' 'isZero('
   replace 'is\(([^;]+)(?(2)\))\)' 'isEqualTo($3'
   fix 'isEqualTo\(null\)' 'isNull()'
   fix 'isNotEqualTo\(null\)' 'isNotNull()'

@@ -260,20 +260,16 @@ public class HamcrestAssertions {
                 1,
                 is(equalTo(1))
         );
-
-        assertThat(1,
-                is(equalTo(1))
+        assertThat(2,
+                is(equalTo(2))
         );
-
-        assertThat(1,
-                is(equalTo(1)));
-
+        assertThat(3,
+                is(equalTo(3)));
         assertThat(
-                1,
-                is(equalTo(1)));
-
+                4,
+                is(equalTo(4)));
         assertThat(
-                1, is(equalTo(1)));
+                5, is(equalTo(5)));
     }
 
     @Test

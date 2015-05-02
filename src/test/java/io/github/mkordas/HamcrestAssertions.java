@@ -1,10 +1,5 @@
 package io.github.mkordas;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
-import org.hamcrest.core.Is;
-import org.hamcrest.core.IsEqual;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -270,13 +265,5 @@ public class HamcrestAssertions {
                 is(equalTo(4)));
         assertThat(
                 5, is(equalTo(5)));
-    }
-
-    @Test
-    public void noStaticImports() {
-        Assert.assertThat(1, Is.is(1));
-        Assert.assertThat(2, IsEqual.equalTo(2));
-        Assert.assertThat(3, Matchers.is(3));
-        Assert.assertThat(4, CoreMatchers.is(4));
     }
 }

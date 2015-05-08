@@ -2,7 +2,7 @@
 git checkout src
 files=$(grep -lR hamcrest src/test/java | grep .java$)
 
-BEGIN='s/(?:Assert\.)?assertThat\(\s*([^X]*?),\s+(?:(?:Is|Matchers|CoreMatchers|IsEqual)\.)?'
+BEGIN='s/(?:Assert\.)?assertThat\(\s*([^;]*?),\s+(?:(?:Is|Matchers|CoreMatchers|IsEqual|IsNot|IsNull)\.)?'
 END=');/gs'
 IS='(is\()?'
 END_FIND='\s*\)+;'

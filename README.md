@@ -2,6 +2,8 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/55438421d8fe1aea70000061/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55438421d8fe1aea70000061)
 # Hamcrest to AssertJ Converter
 
+Bash script that can be used to migrate project with Hamcrest Matchers to AssertJ assertions.
+
 ### Supported Hamcrest Matchers:
 ```java
     @Test

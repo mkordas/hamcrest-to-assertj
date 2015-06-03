@@ -5,6 +5,9 @@ jdk:
   - oraclejdk7
   - openjdk6
 
+before_script:
+ - chmod +x hamcrest-to-assertj.sh
+
 script:
   - gradle check
   - ./hamcrest-to-assertj.sh

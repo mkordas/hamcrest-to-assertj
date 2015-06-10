@@ -464,8 +464,6 @@ Bash script that can be used to migrate project with Hamcrest Matchers to Assert
     assertThat("string", is(equalToIgnoringWhiteSpace(" string")));
     assertThat("string", not(equalToIgnoringWhiteSpace("tring")));
     assertThat("string", is(not(equalToIgnoringWhiteSpace("tring"))));
-    assertThat("string", not(startsWith("g")));
-    assertThat("string", not(endsWith("s")));
     assertThat("string", stringContainsInOrder(asList("s", "t")));
 
     assertThat(asList(0, 1), not(containsInAnyOrder(2, 0)));

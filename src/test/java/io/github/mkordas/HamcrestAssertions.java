@@ -96,8 +96,10 @@ public class HamcrestAssertions {
         assertThat("string", is(equalToIgnoringCase("STRING")));
 
         assertThat("string", startsWith("s"));
+        assertThat("string", not(startsWith("g")));
 
         assertThat("string", endsWith("g"));
+        assertThat("string", not(endsWith("s")));
 
         assertThat("string", containsString("i"));
         assertThat("string", not(containsString("q")));

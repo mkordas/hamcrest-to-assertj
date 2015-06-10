@@ -457,7 +457,7 @@ Bash script that can be used to migrate project with Hamcrest Matchers to Assert
     assertThat(2, not(comparesEqualTo(3)));
     assertThat(5.0, not(closeTo(2.0, 1.0)));
     assertThat(5.0, is(not(closeTo(2.0, 1.0))));
-	
+
     assertThat("string", not(equalToIgnoringCase("STRIN")));
     assertThat("string", is(not(equalToIgnoringCase("STRIN"))));
     assertThat("string", equalToIgnoringWhiteSpace(" string"));
@@ -467,13 +467,12 @@ Bash script that can be used to migrate project with Hamcrest Matchers to Assert
     assertThat("string", not(startsWith("g")));
     assertThat("string", not(endsWith("s")));
     assertThat("string", stringContainsInOrder(asList("s", "t")));
-    assertThat("string", not(stringContainsInOrder(asList("t", "s"))));
-	
+
     assertThat(asList(0, 1), not(containsInAnyOrder(2, 0)));
     assertThat(asList(0, 1, 3), not(iterableWithSize(2)));
     assertThat(asList(0, 1, 3), is(not(iterableWithSize(2))));
     assertThat(asList(0, 1, 3), not(hasSize(2)));
-	
+
     assertThat(new Object[] {}, not(arrayWithSize(1)));
     assertThat(new Object[] {}, is(not(arrayWithSize(1))));
     assertThat(new Object[] { 2, 1 }, not(arrayContaining(1, 2)));

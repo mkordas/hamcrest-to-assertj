@@ -458,8 +458,6 @@ Bash script that can be used to migrate project with Hamcrest Matchers to Assert
     assertThat(5.0, not(closeTo(2.0, 1.0)));
     assertThat(5.0, is(not(closeTo(2.0, 1.0))));
 
-    assertThat("string", not(equalToIgnoringCase("STRIN")));
-    assertThat("string", is(not(equalToIgnoringCase("STRIN"))));
     assertThat("string", equalToIgnoringWhiteSpace(" string"));
     assertThat("string", is(equalToIgnoringWhiteSpace(" string")));
     assertThat("string", not(equalToIgnoringWhiteSpace("tring")));

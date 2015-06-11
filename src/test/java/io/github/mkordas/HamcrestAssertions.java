@@ -94,6 +94,8 @@ public class HamcrestAssertions {
     public void strings() {
         assertThat("string", equalToIgnoringCase("STRING"));
         assertThat("string", is(equalToIgnoringCase("STRING")));
+        assertThat("string", not(equalToIgnoringCase("STRIN")));
+        assertThat("string", is(not(equalToIgnoringCase("STRIN"))));
 
         assertThat("string", startsWith("s"));
         assertThat("string", not(startsWith("g")));

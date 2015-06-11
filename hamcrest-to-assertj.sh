@@ -72,6 +72,7 @@ do
   replace "hasEntry${ARGUMENT_MATCHER}" "containsEntry($3"
   replace "not\(hasEntry${ARGUMENT_MATCHER}\)" "doesNotContainEntry($3"
   replace "equalToIgnoringCase${ARGUMENT_MATCHER}" "isEqualToIgnoringCase($3"
+  replace "not\(equalToIgnoringCase${ARGUMENT_MATCHER}\)" "isNotEqualToIgnoringCase($3"
   replace "sameInstance${ARGUMENT_MATCHER}" "isSameAs($3"
   replace "not\(sameInstance${ARGUMENT_MATCHER}\)" "isNotSameAs($3"
   replace "not\(is\(sameInstance${ARGUMENT_MATCHER}\)\)" "isNotSameAs($3"

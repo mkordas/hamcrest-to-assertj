@@ -9,7 +9,7 @@ import org.hamcrest.core.IsNull;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HamcrestAssertionsNoStaticImports {
+public class HamcrestAssertionsNoStaticImportsTest {
     @Test
     public void noStaticImports() {
         Assert.assertThat(1, Is.is(1));

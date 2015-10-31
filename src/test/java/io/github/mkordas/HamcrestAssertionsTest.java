@@ -49,7 +49,7 @@ import static org.hamcrest.text.IsEmptyString.isEmptyString;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.junit.Assert.assertThat;
 
-public class HamcrestAssertions {
+public class HamcrestAssertionsTest {
     private static final String NULL_STRING = null;
 
     @Test
